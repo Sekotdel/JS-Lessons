@@ -31,7 +31,7 @@ Product.prototype.getPrice = function() {
   return this.price;
 }
 
-/*const ppc = new Product('Yeba', 50);
+/*const ppc = new Product('Yeye', 50);
 
 ppc.make25PercentDiscount().getPrice();*/
 
@@ -69,7 +69,7 @@ ProductChild.prototype.getDiscountedPrice = function(discountPercent) {
   return this.discount(discountPercent).getPrice();
 }
 
-const ppcChild = new ProductChild('Yeba2', 75, 87);
+const ppcChild = new ProductChild('Yoyo', 75, 87);
 //ppcChild.make25PercentDiscount().getPrice();
 //ppcChild.make50PercentDiscount().getPrice();
 //ppcChild.make75PercentDiscount().getPrice();
