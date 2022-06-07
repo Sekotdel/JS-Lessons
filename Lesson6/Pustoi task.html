@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<style>
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 0 auto;
+    }
+</style>
+
+<body> 
+    <div class="buttons">
+    <button class="push-1">Push here</button>
+    <button class="push-2">Push down</button>
+    <button class="push-3">Push push</button>
+</div>
+
+<script>
+    'use strict';
+    document.querySelectorAll('button').forEach(element => {
+        element.style.marginTop = '10px';
+        element.style.fontSize = 'large';
+    });
+
+    // Почему то в консоль название класса выплёвывает undefined
+    const btns = document.querySelectorAll('button')
+    btns.forEach(function(btn) {
+        btn.addEventListener('click', function(e){
+            console.log('Button clicked' + e.target.classlist);
+        })
+    });
+
+    // Вот так вроде событие на всего родителя.
+    document.body.addEventListener('click', e => {
+    // Сначала не понял как вязаться на разные названия классов, потом как понял
+        if (e.target.className) alert(1);
+    })
+</script>
+</body>
