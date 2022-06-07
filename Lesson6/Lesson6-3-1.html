@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <style>
+        i {
+            font-size: 50px;
+        }
+        .golden {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+	<div></div>
+	<div></div>
+	<div></div>
+    <i class="fas fa-star"></i>
+
+    <!-- Задание. Используя заготовку, сделайте чтобы при наведении на вторую звезду
+    подсвечивались первая и вторая звезды. При наведени на третью звезду подсвечивались
+    первая, вторая и третья звезды, и т.д. 
+    mouseover - это событие срабатывает когда мы наводим на элемент.
+    mouseout - это событие срабатывает когда мы перестаем наводить на элемент.
+    -->
+
+    <script>
+        'use strict';
+		
+		const body = document.querySelector('body');
+		
+		const method = {
+			mouseover: ({classList}) => classList.add('golden'), 
+			mouseout: ({classList}) => classList.remove('golden')
+		};
+		
+		const filterStar = ({classList}) => classList.contains('fa-star');
+		
+		const findAllPrevStars = (arrayToFill, {previousElementSibling}) => {	
+			if (!previousElementSibling) {
+				return arrayToFill;
+			}
+			
+			if(filterStar(previousElementSibling)) {
+				arrayToFill.push(previousElementSibling);
+			}
+			
+			return findAllPrevStars(arrayToFill, previousElementSibling);
+		};
+		
+		for(let eventName in method) {
+			body.addEventListener(eventName, function({target}) {		
+				if (!filterStar(target)) {
+					return;
+				}
+				
+				findAllPrevStars([target], target).forEach(method[eventName]);
+			});
+		}
+    </script>
+</body>
+</html>
